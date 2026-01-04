@@ -73,7 +73,7 @@ export default function Contact() {
                     href="tel:+35799123456"
                     className="flex items-start gap-4 group"
                   >
-                    <div className="w-10 h-10 bg-steel/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-steel/20 transition-colors">
+                    <div className="w-10 h-10 bg-steel/10 flex items-center justify-center flex-shrink-0 group-hover:bg-steel/20 transition-colors">
                       <Phone size={18} className="text-steel" />
                     </div>
                     <div>
@@ -88,7 +88,7 @@ export default function Contact() {
                     href="mailto:info@glmetalworks.com"
                     className="flex items-start gap-4 group"
                   >
-                    <div className="w-10 h-10 bg-steel/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-steel/20 transition-colors">
+                    <div className="w-10 h-10 bg-steel/10 flex items-center justify-center flex-shrink-0 group-hover:bg-steel/20 transition-colors">
                       <Mail size={18} className="text-steel" />
                     </div>
                     <div>
@@ -100,7 +100,7 @@ export default function Contact() {
                   </a>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-steel/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 bg-steel/10 flex items-center justify-center flex-shrink-0">
                       <MapPin size={18} className="text-steel" />
                     </div>
                     <div>
@@ -112,7 +112,7 @@ export default function Contact() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-steel/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 bg-steel/10 flex items-center justify-center flex-shrink-0">
                       <Clock size={18} className="text-steel" />
                     </div>
                     <div>
@@ -135,8 +135,8 @@ export default function Contact() {
               className="lg:col-span-3"
             >
               {isSubmitted ? (
-                <div className="bg-gray-800/50 rounded-2xl p-8 sm:p-10 text-center">
-                  <div className="w-16 h-16 bg-steel/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="bg-gray-800/50 p-8 sm:p-10 text-center">
+                  <div className="w-16 h-16 bg-steel/20 flex items-center justify-center mx-auto mb-4">
                     <Send size={24} className="text-steel" />
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-2">
@@ -155,7 +155,7 @@ export default function Contact() {
               ) : (
                 <form
                   onSubmit={handleSubmit}
-                  className="bg-gray-800/50 rounded-2xl p-8 sm:p-10"
+                  className="bg-gray-800/50 p-8 sm:p-10"
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
                     <div>
@@ -172,7 +172,7 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-steel transition-colors"
+                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-steel transition-colors"
                         placeholder="John Smith"
                       />
                     </div>
@@ -190,7 +190,7 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-steel transition-colors"
+                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-steel transition-colors"
                         placeholder="john@example.com"
                       />
                     </div>
@@ -210,7 +210,7 @@ export default function Contact() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-steel transition-colors"
+                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-steel transition-colors"
                         placeholder="+357 99 123 456"
                       />
                     </div>
@@ -226,7 +226,7 @@ export default function Contact() {
                         name="projectType"
                         value={formData.projectType}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-steel transition-colors appearance-none"
+                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 text-white focus:outline-none focus:border-steel transition-colors appearance-none"
                       >
                         <option value="" className="bg-gray-900">Select a type</option>
                         <option value="structural" className="bg-gray-900">Structural Steel</option>
@@ -252,7 +252,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       rows={4}
-                      className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-steel transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-steel transition-colors resize-none"
                       placeholder="Tell us about your project..."
                     />
                   </div>
@@ -260,7 +260,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 bg-steel hover:bg-steel-light text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-3.5 bg-steel hover:bg-steel-light text-white font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       "Sending..."

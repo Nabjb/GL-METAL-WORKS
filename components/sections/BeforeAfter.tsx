@@ -91,7 +91,7 @@ export default function BeforeAfter() {
           {/* Image Container */}
           <div
             ref={containerRef}
-            className="relative rounded-xl overflow-hidden cursor-ew-resize select-none border border-gray-200"
+            className="relative overflow-hidden cursor-ew-resize select-none border border-gray-200"
             onMouseDown={handleMouseDown}
             onTouchStart={handleMouseDown}
           >
@@ -134,7 +134,7 @@ export default function BeforeAfter() {
             >
               {/* Slider Handle */}
               <div
-                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center transition-transform shadow-md border border-gray-100 ${
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white flex items-center justify-center transition-transform shadow-md border border-gray-100 ${
                   isDragging ? "scale-110" : "hover:scale-105"
                 }`}
               >

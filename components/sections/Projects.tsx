@@ -140,13 +140,13 @@ function ProjectModal({
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="relative w-full max-w-4xl bg-white rounded-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-4xl bg-white overflow-hidden max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 z-10 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-white transition-colors"
+          className="absolute right-4 top-4 z-10 w-10 h-10 bg-white/90 backdrop-blur flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-white transition-colors"
           aria-label="Close"
         >
           <X size={20} />
@@ -162,7 +162,7 @@ function ProjectModal({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           <div className="absolute bottom-6 left-6 right-6">
-            <span className="inline-block px-3 py-1 bg-steel text-white text-xs font-medium rounded-full mb-3">
+            <span className="inline-block px-3 py-1 bg-steel text-white text-xs font-medium mb-3">
               {project.category}
             </span>
             <h3 className="text-2xl sm:text-3xl font-semibold text-white">
@@ -200,7 +200,7 @@ function ProjectModal({
                 {project.specs.map((spec, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-lg"
+                    className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm"
                   >
                     {spec}
                   </span>
@@ -261,7 +261,7 @@ export default function Projects() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
+              className={`px-4 py-2 text-sm font-medium transition-all duration-200 ${
                 activeCategory === category
                   ? "bg-steel text-white"
                   : "bg-white text-gray-600 hover:bg-gray-100"
@@ -287,7 +287,7 @@ export default function Projects() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
                 onClick={() => setSelectedProject(project)}
-                className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
+                className="group cursor-pointer bg-white overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
                 {/* Image */}
                 <div className="relative h-56 overflow-hidden">
@@ -300,7 +300,7 @@ export default function Projects() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Hover arrow */}
-                  <div className="absolute bottom-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                  <div className="absolute bottom-4 right-4 w-10 h-10 bg-white flex items-center justify-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                     <ArrowUpRight size={18} className="text-steel" />
                   </div>
                 </div>

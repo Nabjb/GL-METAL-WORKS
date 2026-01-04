@@ -60,7 +60,7 @@ export default function ProjectsCTA() {
           >
             <Link
               href="/projects"
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-steel text-white font-medium rounded-full hover:bg-steel-dark transition-colors"
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-steel text-white font-medium hover:bg-steel-dark transition-colors"
             >
               View All Projects
               <ArrowRight
@@ -82,7 +82,7 @@ export default function ProjectsCTA() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <Link href="/projects" className="group block">
-                <div className="relative h-64 sm:h-72 rounded-xl overflow-hidden mb-4">
+                <div className="relative h-64 sm:h-72 overflow-hidden mb-4">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -91,7 +91,7 @@ export default function ProjectsCTA() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
-                    <span className="inline-block px-2 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-medium rounded mb-2">
+                    <span className="inline-block px-2 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-medium mb-2">
                       {project.category}
                     </span>
                     <h3 className="text-lg font-semibold text-white">

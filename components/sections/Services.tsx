@@ -274,9 +274,9 @@ export default function Services() {
                       </span>
                       {/* Dot/Bar indicator */}
                       <span
-                        className={`block rounded-full transition-all duration-300 ${
+                        className={`block transition-all duration-300 ${
                           i === activeIndex
-                            ? "w-6 h-1.5 bg-steel rounded-sm"
+                            ? "w-6 h-1.5 bg-steel"
                             : "w-2 h-2 bg-white/30 group-hover:bg-white/60"
                         }`}
                       />
