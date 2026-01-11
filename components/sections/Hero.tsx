@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 
 const navLinks = [
   { href: "/#home", label: "Home" },
@@ -39,18 +40,49 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative min-h-screen bg-[#f5f5f5]">
+      {/* Mobile Menu Button - Fixed in white space top-right */}
+      <button
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className="lg:hidden fixed top-4 right-4 z-50 w-10 h-10 flex flex-col items-center justify-center gap-1.5 text-gray-900 bg-white/90 backdrop-blur-sm rounded-lg shadow-md hover:bg-white transition-all duration-200"
+        aria-label="Toggle menu"
+      >
+        <span className={`w-5 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
+        <span className={`w-5 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`} />
+        <span className={`w-5 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+      </button>
+
+      {/* Mobile Menu Dropdown - Fixed overlay with glassmorphism */}
+      <div 
+        className={`lg:hidden fixed top-16 right-4 z-40 rounded-xl shadow-2xl overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"}`}
+        style={{
+          background: 'rgba(255, 255, 255, 0.25)',
+          backdropFilter: 'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          border: '1px solid rgba(255, 255, 255, 0.3)',
+          boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        <div className="flex flex-col min-w-[200px] py-2">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-sm text-gray-900 hover:bg-white/30 px-4 py-3 transition-colors duration-200"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+
       {/* Outer padding container */}
       <div className="p-3 sm:p-4 lg:p-5 h-screen">
-        {/* SVG Clip Path Definition */}
+        {/* SVG Clip Path Definitions */}
         <svg width="0" height="0" className="absolute">
           <defs>
-            <clipPath id="heroClip" clipPathUnits="objectBoundingBox">
-              {/* 
-                Rectangular frame with top-right z-shaped notch:
-                - Top edge: from left, go right to x=0.82, then down (vertical), then right (horizontal), then down (vertical) - z shape
-                - Right edge: continue down
-                - Minimal rounding on other corners
-              */}
+            {/* Mobile clip-path - original larger notch */}
+            <clipPath id="heroClipMobile" clipPathUnits="objectBoundingBox">
               <path d="
                 M 0.005 0
                 Q 0 0, 0 0.005
@@ -66,15 +98,43 @@ export default function Hero() {
                 Z
               " />
             </clipPath>
+            {/* Desktop clip-path - smaller notch */}
+            <clipPath id="heroClipDesktop" clipPathUnits="objectBoundingBox">
+              <path d="
+                M 0.005 0
+                Q 0 0, 0 0.005
+                L 0 0.995
+                Q 0 1, 0.005 1
+                L 0.995 1
+                Q 1 1, 1 0.995
+                L 1 0.08
+                L 0.90 0.08
+                L 0.90 0
+                Q 0.90 0, 0.895 0
+                L 0.005 0
+                Z
+              " />
+            </clipPath>
           </defs>
         </svg>
+
+        {/* Responsive clip-path styles */}
+        <style dangerouslySetInnerHTML={{__html: `
+          .hero-frame {
+            clip-path: url(#heroClipMobile);
+          }
+          @media (min-width: 1024px) {
+            .hero-frame {
+              clip-path: url(#heroClipDesktop);
+            }
+          }
+        `}} />
 
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
-          className="relative w-full h-full"
-          style={{ clipPath: 'url(#heroClip)' }}
+          className="relative w-full h-full hero-frame"
         >
           {/* Video Background */}
           <motion.div
@@ -138,33 +198,7 @@ export default function Hero() {
               <div className="hidden lg:block" />
             </div>
 
-            {/* Mobile Menu */}
-            <div className={`lg:hidden overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? "max-h-80 mt-4" : "max-h-0"}`}>
-              <div className="flex flex-col gap-1 pt-4 border-t border-white/10">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-sm text-white/70 hover:text-white py-2.5 transition-colors duration-200"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
           </nav>
-
-          {/* Mobile Menu Button - Fixed position */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden absolute top-5 right-6 z-30 w-10 h-10 flex flex-col items-center justify-center gap-1.5 text-white"
-            aria-label="Toggle menu"
-          >
-            <span className={`w-5 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`w-5 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`} />
-            <span className={`w-5 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-          </button>
 
           {/* Main Content */}
           <div className="relative z-10 h-[calc(100%-80px)] flex items-center px-6 sm:px-8 lg:px-12">
@@ -217,13 +251,20 @@ export default function Hero() {
                 custom={0.5}
                 className="flex flex-wrap items-center gap-4"
               >
-                <a
+                <MovingBorderButton
+                  as="a"
                   href="#services"
-                  className="inline-flex items-center gap-2 px-5 py-3 bg-steel hover:bg-steel-light text-white text-sm font-medium rounded-full transition-colors duration-200"
+                  borderRadius="9999px"
+                  duration={5000}
+                  containerClassName="!h-auto !w-auto"
+                  className="!bg-steel hover:!bg-steel-light !border-transparent !text-white !text-sm !font-medium !px-6 !py-3.5 transition-all duration-300"
+                  borderClassName="bg-[radial-gradient(rgba(255,255,255,0.8)_50%,transparent_80%)]"
                 >
-                  Explore Our Services
-                  <ArrowRight className="w-4 h-4" />
-                </a>
+                  <span className="inline-flex items-center gap-2">
+                    Explore Our Services
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </MovingBorderButton>
               </motion.div>
 
               {/* Stats Row */}
