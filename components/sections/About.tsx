@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 const stats = [
   { value: 30, suffix: "+", label: "Years Experience" },
@@ -84,8 +85,17 @@ const leadership = [
 
 export default function About() {
   return (
-    <section id="about" className="bg-white py-24 sm:py-32">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+    <section id="about" className="relative bg-gray-900 py-24 sm:py-32">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-30"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.12) 1px, transparent 1px)",
+          backgroundSize: "42px 42px",
+        }}
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-gray-900 via-transparent to-gray-900/80" />
+      <div className="relative container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <motion.div
@@ -97,51 +107,32 @@ export default function About() {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-8 bg-steel" />
-              <span className="text-xs text-gray-400 tracking-widest uppercase">
-                About Us
+              <span className="text-xs text-white/70 tracking-[0.3em] uppercase">
+                Who We Are
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 leading-[1.1] mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-[1.1] mb-6">
               Built on Experience.{" "}
               <span className="text-steel">Driven by Precision.</span>
             </h2>
 
-            <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
+            <p className="text-lg text-white/75 leading-relaxed max-w-3xl">
               With over 30 years of experience in metal construction and
               fabrication, we have delivered 200+ completed projects across
               industrial, commercial, and custom steel applications.
             </p>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="grid grid-cols-3 gap-8 mb-20 pb-20 border-b border-gray-100"
-          >
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center sm:text-left">
-                <p className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-gray-900 mb-2">
-                  <CountUp target={stat.value} suffix={stat.suffix} />
-                </p>
-                <p className="text-sm text-gray-500">{stat.label}</p>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Main content grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-            {/* Left - Story + Differentiators */}
+          {/* Intro grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.05 }}
             >
-              <p className="text-gray-600 leading-relaxed mb-10">
+              <p className="text-white/75 leading-relaxed mb-10">
                 Founded in 1990, our company combines engineering expertise with
                 hands-on production excellence, ensuring every project meets the
                 highest standards of safety, durability, and craftsmanship.
@@ -149,39 +140,90 @@ export default function About() {
 
               {/* What Sets Us Apart */}
               <div>
-                <h3 className="text-sm text-gray-400 tracking-widest uppercase mb-6">
+                <h3 className="text-xs text-white/70 tracking-[0.3em] uppercase mb-6">
                   What Sets Us Apart
                 </h3>
-                <ul className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {differentiators.map((item, i) => (
-                    <motion.li
+                    <motion.div
                       key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                      className="flex items-start gap-3"
+                      transition={{ duration: 0.35, delay: 0.2 + i * 0.05 }}
+                      className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 shadow-sm"
                     >
-                      <span className="w-1.5 h-1.5 bg-steel rounded-full mt-2 flex-shrink-0" />
-                      <span className="text-gray-700">{item}</span>
-                    </motion.li>
+                      <span className="block text-sm text-white/80">{item}</span>
+                    </motion.div>
                   ))}
-                </ul>
+                </div>
               </div>
             </motion.div>
 
-            {/* Right - Leadership */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="relative"
+            >
+              <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-white/5 shadow-2xl">
+                <Image
+                  src="/images and videos/metal fabrication workshop.png"
+                  alt="Metal fabrication workshop"
+                  width={1200}
+                  height={900}
+                  className="h-full w-full object-cover"
+                  priority
+                />
+                <div className="absolute bottom-4 left-4 rounded-full bg-black/80 px-4 py-2 text-xs uppercase tracking-[0.2em] text-white">
+                  Established 1990
+                </div>
+              </div>
+              <div className="absolute -top-6 -right-6 rounded-2xl bg-white px-5 py-4 shadow-xl">
+                <p className="text-xs text-gray-500 uppercase tracking-[0.2em]">
+                  Signature
+                </p>
+                <p className="text-lg font-semibold text-gray-900">GL Metal Works</p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="grid grid-cols-1 gap-6 mb-20 pb-20 border-b border-white/10 sm:grid-cols-3"
+          >
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-2xl border border-white/15 bg-white/5 px-6 py-6 text-center shadow-sm sm:text-left"
+              >
+                <p className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white mb-2">
+                  <CountUp target={stat.value} suffix={stat.suffix} />
+                </p>
+                <p className="text-sm text-white/60">{stat.label}</p>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Leadership */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+            {/* Left - Leadership */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <h3 className="text-sm text-gray-400 tracking-widest uppercase mb-8">
+              <h3 className="text-xs text-white/70 tracking-[0.3em] uppercase mb-8">
                 Leadership
               </h3>
 
-              <div className="space-y-8">
+              <div className="space-y-6">
                 {leadership.map((person, i) => (
                   <motion.div
                     key={person.name}
@@ -189,19 +231,49 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
-                    className="border-l-2 border-steel/20 pl-6 hover:border-steel transition-colors duration-300"
+                    className="rounded-2xl border border-white/15 bg-white/5 px-6 py-6 shadow-sm"
                   >
-                    <h4 className="text-xl font-semibold text-gray-900 mb-1">
-                      {person.name}
-                    </h4>
-                    <p className="text-sm text-steel font-medium mb-3">
+                    <p className="text-xs uppercase tracking-[0.2em] text-white/60 mb-2">
                       {person.role}
                     </p>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <h4 className="text-2xl font-semibold text-white mb-3">
+                      {person.name}
+                    </h4>
+                    <p className="text-white/70 text-sm leading-relaxed">
                       {person.description}
                     </p>
                   </motion.div>
                 ))}
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="flex items-center"
+            >
+              <div className="rounded-3xl border border-white/15 bg-white/5 p-8 shadow-xl">
+                <h3 className="text-xl font-semibold text-white mb-4">
+                  Our Promise
+                </h3>
+                <p className="text-white/75 leading-relaxed mb-6">
+                  We approach every project with a craftsman&apos;s mindset,
+                  balancing structural performance with a refined finish that
+                  elevates the space around it.
+                </p>
+                <div className="flex items-center gap-3 text-sm text-white/70">
+                  <span className="inline-flex h-2 w-2 rounded-full bg-steel" />
+                  Safety-first planning
+                </div>
+                <div className="flex items-center gap-3 text-sm text-white/70 mt-3">
+                  <span className="inline-flex h-2 w-2 rounded-full bg-steel" />
+                  Precision fabrication
+                </div>
+                <div className="flex items-center gap-3 text-sm text-white/70 mt-3">
+                  <span className="inline-flex h-2 w-2 rounded-full bg-steel" />
+                  On-time delivery
+                </div>
               </div>
             </motion.div>
           </div>
@@ -212,12 +284,12 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-20 pt-16 border-t border-gray-100 text-center"
+            className="mt-20 pt-16 border-t border-white/10 text-center"
           >
-            <p className="text-xl sm:text-2xl text-gray-700 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-xl sm:text-2xl text-white/80 leading-relaxed max-w-2xl mx-auto">
               From concept to completion, we don't just build metal structures.
               <br />
-              <span className="text-gray-900 font-medium">
+              <span className="text-white font-medium">
                 We build solutions that last.
               </span>
             </p>
@@ -227,4 +299,3 @@ export default function About() {
     </section>
   );
 }
-

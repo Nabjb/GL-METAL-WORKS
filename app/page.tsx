@@ -1,7 +1,8 @@
 import Hero from "@/components/sections/Hero";
+import ProcessStrip from "@/components/sections/ProcessStrip";
+import ThreeDGallery from "@/components/sections/ThreeDGallery";
 import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
-import BeforeAfter from "@/components/sections/BeforeAfter";
 import ProjectsCTA from "@/components/sections/ProjectsCTA";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/Footer";
@@ -11,14 +12,14 @@ export default function Home() {
     <>
       <main>
         <Hero />
-        <About />
+        <ThreeDGallery />
+        <ProcessStrip />
         <Services />
-        <BeforeAfter />
         <ProjectsCTA />
+        <About />
         <Contact />
       </main>
       <Footer />
     </>
   );
 }
-

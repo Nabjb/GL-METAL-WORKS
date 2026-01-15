@@ -39,7 +39,16 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen bg-[#f5f5f5]">
+    <section id="home" className="relative min-h-screen bg-white">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-30"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(0,0,0,0.25) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.25) 1px, transparent 1px)",
+          backgroundSize: "42px 42px",
+        }}
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white via-transparent to-white/70" />
       {/* Mobile Menu Button - Fixed in white space top-right */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -359,4 +368,3 @@ export default function Hero() {
     </section>
   );
 }
-

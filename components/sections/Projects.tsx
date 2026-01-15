@@ -154,12 +154,20 @@ function ProjectModal({
 
         {/* Image */}
         <div className="relative h-64 sm:h-80 lg:h-96">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover"
-          />
+          {project.image.startsWith("http") ? (
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className="object-cover"
+            />
+          ) : (
+            <img
+              src={project.image.replace(/\s/g, "%20")}
+              alt={project.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           <div className="absolute bottom-6 left-6 right-6">
             <span className="inline-block px-3 py-1 bg-steel text-white text-xs font-medium mb-3">
@@ -217,6 +225,7 @@ function ProjectModal({
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
 
   const filteredProjects =
     activeCategory === "All"
@@ -290,13 +299,25 @@ export default function Projects() {
                 className="group cursor-pointer bg-white overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
                 {/* Image */}
-                <div className="relative h-56 overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                <div className="relative h-56 overflow-hidden bg-gray-200">
+                  {project.image.startsWith("http") ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <img
+                      src={project.image.replace(/\s/g, "%20")}
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onError={(e) => {
+                        console.error("Image failed to load:", project.image);
+                        setImageErrors(prev => new Set(prev).add(project.id));
+                      }}
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Hover arrow */}
