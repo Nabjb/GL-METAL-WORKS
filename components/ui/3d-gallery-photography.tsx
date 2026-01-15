@@ -470,9 +470,8 @@ function GalleryScene({
         if (!texture || !material) return null;
 
         // Calculate scale to maintain aspect ratio
-        const aspect = texture.image
-          ? texture.image.width / texture.image.height
-          : 1;
+        const imageSize = texture.image as { width: number; height: number } | undefined;
+        const aspect = imageSize ? imageSize.width / imageSize.height : 1;
 				const scale: [number, number, number] =
 					aspect > 1 ? [3.6 * aspect, 3.6, 1] : [3.6, 3.6 / aspect, 1];
 
