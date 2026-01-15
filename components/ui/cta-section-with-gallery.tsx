@@ -10,7 +10,7 @@ interface GalleryGridCellProps extends HTMLMotionProps<"div"> {
 }
 
 const SPRING_TRANSITION_CONFIG = {
-  type: "spring",
+  type: "spring" as const,
   stiffness: 100,
   damping: 16,
   mass: 0.75,
