@@ -41,14 +41,14 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen bg-white">
       <div
-        className="pointer-events-none absolute inset-0 opacity-30"
+        className="pointer-events-none absolute inset-0 opacity-20"
         style={{
           backgroundImage:
             "linear-gradient(to right, rgba(0,0,0,0.25) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.25) 1px, transparent 1px)",
           backgroundSize: "42px 42px",
         }}
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white via-transparent to-white/70" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/90 via-transparent to-white/70" />
       {/* Mobile Menu Button - Fixed in white space top-right */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -85,12 +85,12 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Outer padding container */}
-      <div className="p-3 sm:p-4 lg:p-5 h-screen">
+      {/* Outer container */}
+      <div className="h-screen">
         {/* SVG Clip Path Definitions */}
         <svg width="0" height="0" className="absolute">
           <defs>
-            {/* Mobile clip-path - original larger notch */}
+            {/* Full-bleed clip-path */}
             <clipPath id="heroClipMobile" clipPathUnits="objectBoundingBox">
               <path d="
                 M 0.005 0
@@ -99,15 +99,12 @@ export default function Hero() {
                 Q 0 1, 0.005 1
                 L 0.995 1
                 Q 1 1, 1 0.995
-                L 1 0.08
-                L 0.82 0.08
-                L 0.82 0
-                Q 0.82 0, 0.815 0
+                L 1 0.005
+                Q 1 0, 0.995 0
                 L 0.005 0
                 Z
               " />
             </clipPath>
-            {/* Desktop clip-path - smaller notch */}
             <clipPath id="heroClipDesktop" clipPathUnits="objectBoundingBox">
               <path d="
                 M 0.005 0
@@ -116,10 +113,8 @@ export default function Hero() {
                 Q 0 1, 0.005 1
                 L 0.995 1
                 Q 1 1, 1 0.995
-                L 1 0.08
-                L 0.90 0.08
-                L 0.90 0
-                Q 0.90 0, 0.895 0
+                L 1 0.005
+                Q 1 0, 0.995 0
                 L 0.005 0
                 Z
               " />
@@ -211,7 +206,7 @@ export default function Hero() {
 
           {/* Main Content */}
           <div className="relative z-10 h-[calc(100%-80px)] flex items-center px-6 sm:px-8 lg:px-12">
-            <div className="max-w-2xl">
+            <div className="max-w-[40rem]">
               {/* Label */}
               <motion.div
                 initial="hidden"
@@ -232,7 +227,7 @@ export default function Hero() {
                 animate="visible"
                 variants={fadeUp}
                 custom={0.3}
-                className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-white mb-5 leading-[1.1]"
+                className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-white mb-4 leading-[1.06]"
               >
                 LET&apos;S BUILD{" "}
                 <span className="text-steel">SMART</span>
@@ -246,7 +241,7 @@ export default function Hero() {
                 animate="visible"
                 variants={fadeUp}
                 custom={0.4}
-                className="text-base text-white/60 mb-8 leading-relaxed max-w-md"
+                className="text-base text-white/65 mb-7 leading-relaxed max-w-lg"
               >
                 From structural frameworks to custom metalwork, we deliver 
                 architectural fabrication for commercial and residential projects.
@@ -258,7 +253,7 @@ export default function Hero() {
                 animate="visible"
                 variants={fadeUp}
                 custom={0.5}
-                className="flex flex-wrap items-center gap-4"
+                className="mt-2 flex flex-wrap items-center gap-4"
               >
                 <MovingBorderButton
                   as="a"
@@ -282,7 +277,7 @@ export default function Hero() {
                 animate="visible"
                 variants={fadeUp}
                 custom={0.6}
-                className="flex items-center gap-6 mt-12"
+                className="flex items-center gap-6 mt-10"
               >
                 <div className="flex items-center gap-3">
                   <div className="flex -space-x-2">
@@ -348,6 +343,13 @@ export default function Hero() {
             </div>
           </motion.div>
         </motion.div>
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center">
+          <div className="flex flex-col items-center gap-2 text-white/60">
+            <span className="text-[10px] tracking-[0.35em] uppercase">Scroll</span>
+            <span className="h-8 w-px bg-white/40" />
+          </div>
+        </div>
 
         {/* CTA Button - Positioned in the notch cutout area */}
         <motion.div
